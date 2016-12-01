@@ -2,13 +2,20 @@ def source_paths
   [File.expand_path(File.dirname(__FILE__))]
 end
 
-#gsub_file "Gemfile", /.*sqlite.*\n/,''
-#gsub_file "Gemfile", /.*byebug.*\n/,''
-remove_file 'Gemfile'
-copy_file 'Gemfile'
+def replace_files(filenames)
+  filenames.each do |filename|
+    remove_file filename
+    copy_file filename
+  end
+end
 
-remove_file '.gitignore'
-copy_file '.gitignore'
+end
+
+filesnames = ['Gemfile',
+               '.gitignore',
+               'Guardfile']
+
+replace_files(filenames)
 
 inside 'test' do
   remove_file 'test_helper.rb'
