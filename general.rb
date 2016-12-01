@@ -7,17 +7,8 @@ end
 remove_file 'Gemfile'
 copy_file 'Gemfile'
 
-gem_group :development, :test do
-  gem 'pry-byebug'
-  gem 'pry-rails'
-  gem 'sqlite3'
-  gem 'minitest', '5.9.1'
-  gem 'minitest-reporters'
-end
-
-gem_group :production do
-  gem 'pg'
-end
+remove_file '.gitignore'
+copy_file '.gitignore'
 
 inside 'test' do
   remove_file 'test_helper.rb'
@@ -33,7 +24,5 @@ after_bundle do
   git :init
   git add: "."
   git commit: %Q{ -m 'Initialize repository' }
-  run "heroku create tz#{app_name}"
-  git push: "heroku master"
-  run "heroku run rails db:migrate"
+  run "heroku create #{app_name.dasherize}"
 end
