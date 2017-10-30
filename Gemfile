@@ -25,13 +25,14 @@ gem 'jbuilder', '~> 2.5'
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 gem 'slim-rails'
+gem 'bootstrap-sass', '3.3.6'
 
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 
 group :development, :test do
-  # Call 'byebug' anywhere in the code to stop execution and get a debugger console
-  gem 'byebug', platform: :mri
+  gem 'pry-byebug'
+  gem 'pry-rails'
   # Use sqlite3 as the database for Active Record
   gem 'sqlite3'
   gem 'minitest', '5.9.1'

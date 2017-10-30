@@ -57,7 +57,11 @@ end
 # zeus: false                          # enables zeus gem.
 # CLI: 'rails server'                  # customizes runner command. Omits all options except `pid_file`!
 
-guard 'rails' do
+#For unlimited guard instances
+port = 3000
+port += 1 while system("lsof -i:#{port}")
+
+guard :rails, port: port, host: '0.0.0.0' do
   watch('Gemfile.lock')
   watch(%r{^(config|lib)/.*})
 end

@@ -9,11 +9,9 @@ def replace_files(filenames)
   end
 end
 
-end
-
-filesnames = ['Gemfile',
-               '.gitignore',
-               'Guardfile']
+filenames = ['Gemfile',
+             '.gitignore',
+             'Guardfile']
 
 replace_files(filenames)
 
@@ -23,7 +21,7 @@ inside 'test' do
 end
 
 #Convert generated erb files to slim
-run "find . -type f -iname \"*.html.erb\" -exec erb2slim {} -d \\;"
+run "erb2slim . -d"
 
 rails_command "db:migrate"
 
